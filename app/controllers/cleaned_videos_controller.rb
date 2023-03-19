@@ -1,22 +1,27 @@
 class CleanedVideosController < ApplicationController
-  def index
-    @video = VideoIdFromUrl.new
-  end
-
   def new
     @video = VideoIdFromUrl.new
   end
 
   def create
     @video = VideoIdFromUrl.new(cleaned_video_params)
+
     id = @video.get_id
+
+    # TODO move all this login into the VideoIdFromUrl object and refactor
     if id.present?
-      # TODO rescue from errors in here
-      res = TikTokMetaApi.new.video_data(id)
-      data = JSON.parse(res.body)
-      video_data = data['aweme_list'][0]['video']
-      @download_urls =  video_data['play_addr']['url_list']
-      @cover = video_data['dynamic_cover']['url_list'][0]
+      begin
+        response = TikTokMetaApi.new.video_data(id)
+        video_data = JSON.parse(response.body)['aweme_list'][0]['video']
+        @download_urls =  video_data['play_addr']['url_list']
+        @cover = video_data['dynamic_cover']['url_list'][0]
+      rescue StandardError => e
+        p e.message
+        Rails.logger.debug e
+        # TODO forward error to Sentry or other error tracking service
+        @video.errors.add(:video_url, :parsing_error)
+        render :new, status: 422
+      end
     else
       render :new, status: 422
     end
@@ -26,5 +31,9 @@ class CleanedVideosController < ApplicationController
 
   def cleaned_video_params
     params.require(:cleaned_video).permit(:video_url)
+  end
+
+  def parse_video_data(data)
+    
   end
 end

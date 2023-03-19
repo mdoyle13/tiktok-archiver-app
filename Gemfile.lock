@@ -117,6 +117,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
+    mocha (2.0.2)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.6.1)
     multi_xml (0.6.0)
     net-imap (0.3.4)
@@ -171,6 +173,7 @@ GEM
     reline (0.3.2)
       io-console (~> 0.5)
     rexml (3.2.5)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -227,6 +230,7 @@ DEPENDENCIES
   httparty
   importmap-rails
   jbuilder
+  mocha
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   selenium-webdriver
