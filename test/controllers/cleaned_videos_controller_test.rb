@@ -13,9 +13,9 @@ class CleanedVideosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should be successful if url is valid" do
-    # don't make actual http requests
     VideoIdFromUrl.any_instance.expects(:get_id).returns("12345")
 
+    # don't make actual http requests
     httparty = mock()
     httparty.expects(:body).returns(File.read(Rails.root.join('test', 'data', 'video_data.json')))
   

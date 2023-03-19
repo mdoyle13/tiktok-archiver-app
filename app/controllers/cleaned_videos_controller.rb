@@ -16,7 +16,6 @@ class CleanedVideosController < ApplicationController
         @download_urls =  video_data['play_addr']['url_list']
         @cover = video_data['dynamic_cover']['url_list'][0]
       rescue StandardError => e
-        p e.message
         Rails.logger.debug e
         # TODO forward error to Sentry or other error tracking service
         @video.errors.add(:video_url, :parsing_error)
