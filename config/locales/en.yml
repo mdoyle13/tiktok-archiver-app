@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  activemodel:
+    attributes:
+      video_id_from_url:
+        video_url: URL
+    errors:
+      models:
+        video_id_from_url:
+          attributes:
+            video_url:
+              invalid: is not valid. are you sure its a TikTok URL?'

@@ -1,0 +1,12 @@
+<turbo-stream action="update" target="results">
+  <template>
+    <div class="mt-20 flex sm:flex-row flex-col">
+      <div><%= image_tag @cover %></div>
+      <div class="flex flex-col px-4 mt-4 sm:mt-0">
+        <% @download_urls.each_with_index do |url, index| %>
+          <%= link_to "Download MP4 Link - #{index+1}", url, target: "_blank",
+            class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer mb-4" %>
+        <% end %>
+      </div>
+    </template>
+</turbo-stream>

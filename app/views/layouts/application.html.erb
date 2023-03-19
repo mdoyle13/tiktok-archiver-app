@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TiktokArchiverApp</title>
+    <title>TikTok Video Downloader</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <main class="flex flex-col items-center pt-10 max-w-[960px] m-auto">
+      <h1 class="text-3xl font-bold text-black-700 mb-4">TikTok Video Downloader</h1>
+      <p class="mb-10">Download TikTok videos without watermarks</p>
+      <%= yield %>
+    </main>
   </body>
 </html>
