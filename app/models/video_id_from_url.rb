@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class VideoIdFromUrl
-
   # given a url in either this format 
   # https://www.tiktok.com/@tadeusofficial/video/{id}?is_from_webapp=1&sender_device=pc 
   # or https://www.tiktok.com/t/{id}/
-
+  # return the id of the video and ensure its a valid tiktok video url
   include ActiveModel::Model
 
   BASE_URL_FMT = /^https?:\/\/www\.tiktok\.com\/@\w+\/video\/\d+\??[^\s]*$/.freeze
